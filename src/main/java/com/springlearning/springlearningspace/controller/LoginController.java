@@ -17,7 +17,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody Login userLogin) throws Exception {
 
         try{

@@ -22,6 +22,7 @@ public class LoginServiceImpl implements  LoginService{
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
 
     @Override
     public User userAuthenticate(Login userLogin) throws Exception {
@@ -40,6 +41,8 @@ public class LoginServiceImpl implements  LoginService{
         var user = loginRepo.findByUserName(userLogin.getUserName());
 
         var jwtToken = jwtService.generateToken(user);
+
+        tokenService.saveToken(user, jwtToken);
 
         return User
                 .builder()
@@ -79,6 +82,7 @@ public class LoginServiceImpl implements  LoginService{
 
         String jwtToken = jwtService.generateToken(saveUser);
 
+        tokenService.saveToken(saveUser, jwtToken);
         return User
                 .builder()
                 .firstName(registerUser.getFirstName())
