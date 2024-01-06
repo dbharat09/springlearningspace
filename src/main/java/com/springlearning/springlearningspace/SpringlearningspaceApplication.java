@@ -12,7 +12,7 @@ public class SpringlearningspaceApplication {
 
 		SpringApplication.run(SpringlearningspaceApplication.class, args);
 
-		System.out.println("here");
+		System.out.println("System Started");
 	}
 
 }
